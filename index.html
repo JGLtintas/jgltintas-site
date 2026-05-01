@@ -756,6 +756,100 @@
       line-height: 1;
     }
 
+    /* "Disponível" no lugar do preço */
+    .preco-display-disponivel {
+      font-family: 'Arial Black', Arial, sans-serif;
+      font-size: 18px;
+      color: var(--amarelo);
+      line-height: 1.2;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .preco-display-disponivel::before {
+      content: '✓';
+      width: 22px;
+      height: 22px;
+      background-color: var(--amarelo);
+      color: var(--preto);
+      border-radius: 50%;
+      font-size: 13px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Rodapé da caixa: aviso + botão de orçamento */
+    .preco-display-rodape {
+      padding: 22px 24px 28px;
+      text-align: center;
+      border-top: 1px solid rgba(255, 206, 59, 0.15);
+      background-color: rgba(255, 255, 255, 0.02);
+    }
+
+    .preco-display-aviso {
+      color: rgba(255, 255, 255, 0.75);
+      font-size: 13px;
+      line-height: 1.5;
+      margin-bottom: 16px;
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Botão grande "Solicitar orçamento" das caixas de tinta */
+    .botao-orcamento {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background-color: var(--amarelo);
+      color: var(--preto);
+      padding: 14px 32px;
+      font-family: 'Arial Black', Arial, sans-serif;
+      font-size: 13px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(255, 206, 59, 0.25);
+    }
+
+    .botao-orcamento:hover {
+      background-color: var(--amarelo-escuro);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(255, 206, 59, 0.4);
+    }
+
+    /* Botão menor dentro dos cards de tachas */
+    .tacha-card-botao {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background-color: var(--amarelo);
+      color: var(--preto);
+      padding: 10px 16px;
+      font-family: 'Arial Black', Arial, sans-serif;
+      font-size: 11px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 2px;
+      margin-top: 18px;
+      position: relative;
+      z-index: 2;
+      transition: all 0.3s ease;
+      align-self: flex-start;
+    }
+
+    .tacha-card-botao:hover {
+      background-color: var(--branco);
+      transform: translateY(-2px);
+    }
+
     /* ==========================================================
        GRADE DE TACHAS E TACHÕES — estilo "asfalto e sinalização"
        ========================================================== */
@@ -1295,7 +1389,7 @@
             </ul>
 
             <h4>Cores disponíveis</h4>
-            <p class="aviso-selecao">Clique numa cor para ver o preço</p>
+            <p class="aviso-selecao">Clique numa cor para ver os tamanhos disponíveis</p>
             <div class="cores-disponiveis" data-grupo="solvente">
               <div class="cor-item" data-cor="Preta" data-tipo="outras"><div class="cor-bolinha cor-preto"></div><span class="cor-nome">Preta</span></div>
               <div class="cor-item" data-cor="Branca" data-tipo="branca-amarela"><div class="cor-bolinha cor-branco"></div><span class="cor-nome">Branca</span></div>
@@ -1310,7 +1404,7 @@
 
         </div>
 
-        <!-- Caixa de preço (aparece ao selecionar uma cor) -->
+        <!-- Caixa que aparece ao selecionar uma cor (com botão de orçamento) -->
         <div class="preco-display" id="preco-solvente">
           <div class="preco-display-cabecalho">
             <span class="bolinha-preview" id="bolinha-preview-solvente"></span>
@@ -1319,12 +1413,21 @@
           <div class="preco-display-corpo">
             <div class="preco-display-item">
               <div class="preco-display-volume">Galão de 18 litros</div>
-              <div class="preco-display-valor" id="preco-18-solvente">—</div>
+              <div class="preco-display-disponivel">Disponível</div>
             </div>
             <div class="preco-display-item">
               <div class="preco-display-volume">Lata de 3,6 litros</div>
-              <div class="preco-display-valor" id="preco-36-solvente">—</div>
+              <div class="preco-display-disponivel">Disponível</div>
             </div>
+          </div>
+          <div class="preco-display-rodape">
+            <p class="preco-display-aviso">Trabalhamos com orçamento personalizado. Fale com nossa equipe de vendas!</p>
+            <a href="#" id="botao-orcamento-solvente" class="botao-orcamento" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+              </svg>
+              Solicitar orçamento
+            </a>
           </div>
         </div>
       </div>
@@ -1359,7 +1462,7 @@
             </ul>
 
             <h4>Cores disponíveis</h4>
-            <p class="aviso-selecao">Clique numa cor para ver o preço</p>
+            <p class="aviso-selecao">Clique numa cor para ver os tamanhos disponíveis</p>
             <div class="cores-disponiveis" data-grupo="agua">
               <div class="cor-item" data-cor="Branca"><div class="cor-bolinha cor-branco"></div><span class="cor-nome">Branca</span></div>
               <div class="cor-item" data-cor="Amarela"><div class="cor-bolinha cor-amarelo"></div><span class="cor-nome">Amarela</span></div>
@@ -1368,7 +1471,7 @@
 
         </div>
 
-        <!-- Caixa de preço (aparece ao selecionar uma cor) -->
+        <!-- Caixa que aparece ao selecionar uma cor (com botão de orçamento) -->
         <div class="preco-display" id="preco-agua">
           <div class="preco-display-cabecalho">
             <span class="bolinha-preview" id="bolinha-preview-agua"></span>
@@ -1377,12 +1480,21 @@
           <div class="preco-display-corpo">
             <div class="preco-display-item">
               <div class="preco-display-volume">Galão de 18 litros</div>
-              <div class="preco-display-valor">R$ 309,90</div>
+              <div class="preco-display-disponivel">Disponível</div>
             </div>
             <div class="preco-display-item">
               <div class="preco-display-volume">Lata de 3,6 litros</div>
-              <div class="preco-display-valor">R$ 95,00</div>
+              <div class="preco-display-disponivel">Disponível</div>
             </div>
+          </div>
+          <div class="preco-display-rodape">
+            <p class="preco-display-aviso">Trabalhamos com orçamento personalizado. Fale com nossa equipe de vendas!</p>
+            <a href="#" id="botao-orcamento-agua" class="botao-orcamento" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+              </svg>
+              Solicitar orçamento
+            </a>
           </div>
         </div>
       </div>
@@ -1431,70 +1543,68 @@
               <h5>Tacha bidirecional<br>amarela</h5>
               <div class="tacha-card-linha"></div>
             </div>
-            <div class="preco">
-              R$ 8,90
-              <span class="preco-unidade">por unidade</span>
-            </div>
+            <a href="#" class="tacha-card-botao" data-produto="Tacha bidirecional amarela" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+              </svg>
+              Solicitar orçamento
+            </a>
           </div>
 
           <div class="tacha-card">
             <div>
-              <div class="tacha-card-numero">02 / FIXAÇÃO</div>
-              <h5>Cola para<br>fixação</h5>
-              <div class="tacha-card-linha"></div>
-            </div>
-            <div class="preco">
-              R$ 19,90
-              <span class="preco-unidade">por unidade</span>
-            </div>
-          </div>
-
-          <div class="tacha-card">
-            <div>
-              <div class="tacha-card-numero">03 / TACHÃO</div>
+              <div class="tacha-card-numero">02 / TACHÃO</div>
               <h5>Tachão<br>monodirecional</h5>
               <div class="tacha-card-linha"></div>
             </div>
-            <div class="preco">
-              R$ 28,90
-              <span class="preco-unidade">por unidade</span>
-            </div>
+            <a href="#" class="tacha-card-botao" data-produto="Tachão monodirecional" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+              </svg>
+              Solicitar orçamento
+            </a>
           </div>
 
           <div class="tacha-card">
             <div>
-              <div class="tacha-card-numero">04 / MINI</div>
+              <div class="tacha-card-numero">03 / MINI</div>
               <h5>Mini<br>tachão</h5>
               <div class="tacha-card-linha"></div>
             </div>
-            <div class="preco">
-              R$ 22,40
-              <span class="preco-unidade">por unidade</span>
-            </div>
+            <a href="#" class="tacha-card-botao" data-produto="Mini tachão" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+              </svg>
+              Solicitar orçamento
+            </a>
           </div>
 
           <div class="tacha-card">
             <div>
-              <div class="tacha-card-numero">05 / TACHÃO</div>
+              <div class="tacha-card-numero">04 / TACHÃO</div>
               <h5>Tachão bidirecional<br>amarelo</h5>
               <div class="tacha-card-linha"></div>
             </div>
-            <div class="preco">
-              R$ 22,40
-              <span class="preco-unidade">por unidade</span>
-            </div>
+            <a href="#" class="tacha-card-botao" data-produto="Tachão bidirecional amarelo" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+              </svg>
+              Solicitar orçamento
+            </a>
           </div>
 
           <div class="tacha-card">
             <div>
-              <div class="tacha-card-numero">06 / BATE-RODA</div>
+              <div class="tacha-card-numero">05 / BATE-RODA</div>
               <h5>Bate-roda<br>padrão CET</h5>
               <div class="tacha-card-linha"></div>
             </div>
-            <div class="preco">
-              R$ 72,90
-              <span class="preco-unidade">por unidade</span>
-            </div>
+            <a href="#" class="tacha-card-botao" data-produto="Bate-roda padrão CET" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+              </svg>
+              Solicitar orçamento
+            </a>
           </div>
 
         </div>
@@ -1600,9 +1710,13 @@
     document.getElementById('anoAtual').textContent = new Date().getFullYear();
 
     // ==========================================================
-    // SELEÇÃO DE COR — TINTA SOLVENTE
-    // Quando a pessoa clica numa bolinha, mostra os preços
+    // SELEÇÃO DE COR — TINTAS
+    // Quando a pessoa clica numa bolinha, mostra os tamanhos
+    // disponíveis e o botão de orçamento já com mensagem pronta
     // ==========================================================
+
+    // Número do WhatsApp (sem símbolos: 55 + DDD + número)
+    const WHATSAPP_NUMERO = '5511994331208';
 
     // Mapa de cores para os códigos hex (usado na bolinha do preview)
     const CORES_HEX = {
@@ -1616,11 +1730,10 @@
       'Concreto': '#B8B0A0'
     };
 
-    // Preços da tinta solvente (depende do tipo da cor)
-    const PRECOS_SOLVENTE = {
-      'branca-amarela': { '18L': 'R$ 459,90', '3,6L': 'R$ 119,90' },
-      'outras':         { '18L': 'R$ 479,90', '3,6L': 'R$ 139,90' }
-    };
+    // Função que monta o link do WhatsApp com mensagem pré-preenchida
+    function montarLinkWhatsApp(mensagem) {
+      return 'https://wa.me/' + WHATSAPP_NUMERO + '?text=' + encodeURIComponent(mensagem);
+    }
 
     // ----- Tinta solvente -----
     document.querySelectorAll('[data-grupo="solvente"] .cor-item').forEach(item => {
@@ -1632,22 +1745,22 @@
 
         // Pega os dados da cor clicada
         const corNome = this.getAttribute('data-cor');
-        const corTipo = this.getAttribute('data-tipo');
         const corHex  = CORES_HEX[corNome];
-        const precos  = PRECOS_SOLVENTE[corTipo];
 
-        // Atualiza a caixa de preço
+        // Atualiza a caixa
         document.getElementById('cor-nome-solvente').textContent = corNome.toUpperCase();
         document.getElementById('bolinha-preview-solvente').style.backgroundColor = corHex;
-        document.getElementById('preco-18-solvente').textContent = precos['18L'];
-        document.getElementById('preco-36-solvente').textContent = precos['3,6L'];
+
+        // Atualiza o botão de orçamento com mensagem específica
+        const mensagem = 'Olá! Gostaria de solicitar um orçamento da Tinta de Demarcação Viária a base de SOLVENTE, na cor ' + corNome + '.';
+        document.getElementById('botao-orcamento-solvente').setAttribute('href', montarLinkWhatsApp(mensagem));
 
         // Mostra a caixa (com animação)
         document.getElementById('preco-solvente').classList.add('ativo');
       });
     });
 
-    // ----- Tinta base d'água (preço único, mas mantém a interação) -----
+    // ----- Tinta base d'água -----
     document.querySelectorAll('[data-grupo="agua"] .cor-item').forEach(item => {
       item.addEventListener('click', function() {
         document.querySelectorAll('[data-grupo="agua"] .cor-item').forEach(i => i.classList.remove('selecionada'));
@@ -1659,8 +1772,20 @@
         document.getElementById('cor-nome-agua').textContent = corNome.toUpperCase();
         document.getElementById('bolinha-preview-agua').style.backgroundColor = corHex;
 
+        // Atualiza o botão com mensagem específica
+        const mensagem = 'Olá! Gostaria de solicitar um orçamento da Tinta de Demarcação Viária a base de ÁGUA, na cor ' + corNome + '.';
+        document.getElementById('botao-orcamento-agua').setAttribute('href', montarLinkWhatsApp(mensagem));
+
         document.getElementById('preco-agua').classList.add('ativo');
       });
+    });
+
+    // ----- Botões dos cards de tachas e tachões -----
+    // Cada card tem o atributo data-produto com o nome do item
+    document.querySelectorAll('.tacha-card-botao').forEach(botao => {
+      const produto = botao.getAttribute('data-produto');
+      const mensagem = 'Olá! Gostaria de solicitar um orçamento de ' + produto + ' com a JGL.';
+      botao.setAttribute('href', montarLinkWhatsApp(mensagem));
     });
   </script>
 
